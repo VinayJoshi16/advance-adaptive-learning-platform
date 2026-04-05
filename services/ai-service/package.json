@@ -1,0 +1,6 @@
+{
+  "name": "ai-service",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Python FastAPI AI service (run with uvicorn; see requirements.txt)"
+}
