@@ -1,8 +1,11 @@
-const express = require('express');
+const express = require("express");
+
 const app = express();
 
-app.get('/api', (req, res) => {
-  res.json({ message: 'Hello from the API Gateway!' });
+app.use(express.json());
+
+app.get("/", (req, res) => {
+  res.send("API Running 🚀");
 });
 
 module.exports = app;
