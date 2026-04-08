@@ -48,3 +48,41 @@ module.exports.registerUser = async (req, res) => {
     }
 };
 
+module.exports.loginUser = async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+    const { email, password } = req.body;
+
+    try {
+        // 1. Find user by email
+        const user = await usermodel.findOne({ where: { email } });
+        if (!user) {
+            return res.status(400).json({ message: "Invalid credentials" });
+        }
+        // 2. Compare password using model method
+        const isMatch = await user.comparePassword(password);
+        if (!isMatch) {
+            return res.status(400).json({ message: "Invalid credentials" });
+        }
+        // 3. Generate token
+        const token = user.generateAuthToken();
+
+        // 4. Send response
+
+        res.status(200).json({
+            message: "Login successful",
+            token,  
+            user: {
+                id: user.id,
+                name: user.name,
+                email: user.email,
+                role: user.role
+            }
+        }); 
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Server error" });
+    }       
+}
