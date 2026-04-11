@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const userController = require('../controllers/user.controller');  
-const {body} = require('express-validator');
+const userController = require('../controllers/user.controller');
+const authMiddleware = require('../middlewares/auth.middleware');
+const { body } = require('express-validator');
 
 
 // Create a new user
@@ -16,5 +17,9 @@ router.post('/login', [
     body('email').isEmail().withMessage('Valid email is required'),
     body('password').notEmpty().withMessage('Password is required')
 ], userController.loginUser);
+
+// User logout (requires valid access token; client must still discard token locally)
+router.post('/logout', authMiddleware, userController.logoutUser);
+
 
 module.exports = router;

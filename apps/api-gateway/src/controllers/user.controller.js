@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { validationResult } = require('express-validator');
 
-
+// register user
 module.exports.registerUser = async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -47,7 +47,7 @@ module.exports.registerUser = async (req, res) => {
         res.status(500).json({ message: "Server error" });
     }
 };
-
+// login user
 module.exports.loginUser = async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -86,3 +86,10 @@ module.exports.loginUser = async (req, res) => {
         res.status(500).json({ message: "Server error" });
     }       
 }
+// logout user (JWT is stateless until you add Redis denylist / refresh rotation)
+module.exports.logoutUser = async (req, res) => {
+    res.status(200).json({
+        message: "Logout successful. Remove the token on the client (storage/cookies).",
+    });
+};
+
