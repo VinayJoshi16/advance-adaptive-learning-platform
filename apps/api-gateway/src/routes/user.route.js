@@ -21,5 +21,7 @@ router.post('/login', [
 // User logout (requires valid access token; client must still discard token locally)
 router.post('/logout', authMiddleware, userController.logoutUser);
 
+// refresh token endpoint (client sends refresh token, server verifies and issues new access token)
+router.post('/refresh-token', userController.refreshToken);
 
 module.exports = router;
