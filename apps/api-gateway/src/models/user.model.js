@@ -38,7 +38,7 @@ const User = sequelize.define("User", {
 });
 
 
-// ✅ Hook for hashing password
+//  Hook for hashing password
 User.beforeCreate(async (user) => {
   if (user.password) {
     const salt = await bcrypt.genSalt(10);
@@ -54,7 +54,7 @@ User.beforeUpdate(async (user) => {
 });
 
 
-// ✅ Instance Methods
+//  Instance Methods
 User.prototype.comparePassword = async function (password) {
   return await bcrypt.compare(password, this.password);
 };
