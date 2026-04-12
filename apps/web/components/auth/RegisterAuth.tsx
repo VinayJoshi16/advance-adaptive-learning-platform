@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import Image from "next/image";
+import Logo from "../../assets/Logo.png";
 
 interface RegisterFormData {
   name: string;
@@ -29,7 +31,7 @@ export default function RegisterAuth() {
   return (
     <div className="flex min-h-screen">
       <div className="hidden md:flex w-1/2 bg-black text-white flex-col justify-between p-10">
-        <div className="text-xl font-bold">AdaptiveLearn</div>
+        <div className="text-xl font-bold"><Image src={Logo} alt="" width={32} height={32} className="h-8 w-8" priority /></div>
 
         <div>
           <h1 className="text-4xl font-bold leading-tight">

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import Logo from "../../assets/Logo.png";
 
 interface LoginData {
   email: string;
@@ -40,7 +41,7 @@ export default function LoginAuth() {
             "url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f')",
         }}
       >
-        <div className="text-xl font-bold">AdaptiveLearn</div>
+        <div className="text-xl font-bold"><Image src={Logo} alt="" width={50} height={50} className="h-8 w-8" priority /></div>
 
         <div>
           <h1 className="text-4xl font-bold leading-tight">

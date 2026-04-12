@@ -1,10 +1,14 @@
+import Image from "next/image";
 import Link from "next/link";
+import Logo from "../../assets/Logo.png";
 
 export default function HomePage() {
   return (
     <div className="h-screen w-full flex flex-col">
       <header className="flex justify-between items-center px-10 py-6">
-        <h1 className="text-xl font-bold">AdaptiveLearn</h1>
+        <Link href="/" className="flex items-center gap-2 text-xl font-bold">
+          <Image src={Logo} alt="" width={32} height={32} className="h-8 w-8" priority />
+        </Link>
 
         <nav className="flex gap-4">
           <Link
